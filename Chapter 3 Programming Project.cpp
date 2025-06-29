@@ -1,20 +1,34 @@
-// Chapter 3 Programming Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// This console application prompts the user for the number of cookies they want, calculates the required amounts of sugar, butter, and flour based on a base recipe that yields 48 cookies, and then displays the scaled ingredient quantities.
 #include <iostream>
+#include <iomanip>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+int main() {
+    // Base recipe yields 48 cookies
+    const int   BASE_COOKIES = 48;
+    const double SUGAR_CUPS = 1.5;
+    const double BUTTER_CUPS = 1.0;
+    const double FLOUR_CUPS = 2.75;
+
+    int requestedCookies;
+    cout << "How many cookies do you want? ";
+    cin >> requestedCookies;
+
+    // Compute scale factor
+    double scale = static_cast<double>(requestedCookies) / BASE_COOKIES;
+
+    // Compute ingredients
+    double sugarNeeded = SUGAR_CUPS * scale;
+    double butterNeeded = BUTTER_CUPS * scale;
+    double flourNeeded = FLOUR_CUPS * scale;
+
+    // Output results
+    cout << fixed << setprecision(2);
+    cout << "\nIngredients needed for " << requestedCookies << " cookies:\n";
+    cout << "  Sugar:  " << sugarNeeded << " cups\n";
+    cout << "  Butter: " << butterNeeded << " cups\n";
+    cout << "  Flour:  " << flourNeeded << " cups\n";
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
